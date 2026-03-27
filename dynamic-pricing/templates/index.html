@@ -1,36 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dynamic Pricing Engine</title>
+    <title>AI Dynamic Pricing</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-<h1>AI Dynamic Pricing</h1>
+<div class="container">
 
-<form action="/predict" method="post">
+    <h1>AI Pricing Engine</h1>
 
-<input name="amazon_price" placeholder="Amazon Price"><br><br>
-<input name="meesho_price" placeholder="Meesho Price"><br><br>
-<input name="discount_pct" placeholder="Discount %"><br><br>
-<input name="rating" placeholder="Rating"><br><br>
-<input name="num_reviews" placeholder="Reviews"><br><br>
-<input name="page_views" placeholder="Page Views"><br><br>
-<input name="conversion_rate" placeholder="Conversion Rate"><br><br>
-<input name="demand_intensity" placeholder="Demand Intensity"><br><br>
+    <form action="/predict" method="post">
 
-<select name="season">
-<option>Summer</option>
-<option>Winter</option>
-<option>Autumn</option>
-<option>Spring</option>
-</select>
+        <input name="amazon_price" placeholder="Amazon Price" required>
+        <input name="meesho_price" placeholder="Meesho Price" required>
+        <input name="discount_pct" placeholder="Discount %" required>
+        <input name="rating" placeholder="Rating (1-5)" required>
+        <input name="num_reviews" placeholder="Number of Reviews" required>
+        <input name="page_views" placeholder="Page Views" required>
+        <input name="conversion_rate" placeholder="Conversion Rate (0-1)" required>
+        <input name="demand_intensity" placeholder="Demand Intensity (1-10)" required>
 
-<br><br>
-<button type="submit">Predict</button>
+        <select name="season">
+            <option>Summer</option>
+            <option>Winter</option>
+            <option>Autumn</option>
+            <option>Spring</option>
+        </select>
 
-</form>
+        <button type="submit">🚀 Predict Price</button>
 
-<h2>{{ result }}</h2>
+    </form>
+
+    {% if result %}
+        <div class="result">{{ result }}</div>
+    {% endif %}
+
+</div>
 
 </body>
 </html>

@@ -25,10 +25,12 @@ def predict():
 
             input_data.append(val)
 
+        
+        amazon_price = float(request.form['amazon_price'])
         prediction = model.predict([input_data])[0]
+        best_price = amazon_price - prediction
 
-        return render_template("index.html",
-            result=f"Predicted Price Difference: ₹ {round(prediction,2)}")
+        return render_template("index.html", result=f"🔥 Recommended Best Price: ₹ {round(best_price,2)}")
 
     except Exception as e:
         return render_template("index.html",

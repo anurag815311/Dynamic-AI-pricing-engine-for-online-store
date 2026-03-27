@@ -11,35 +11,61 @@ df = pd.read_csv("final_dynamic_pricing_dataset.csv")
 print("Dataset Loaded:")
 print(df.head())
 
-# Drop missing values
+# -------------------------------
+# STEP 1: Data Cleaning
+# -------------------------------
 df = df.dropna()
 
-# Encode season (categorical)
+# -------------------------------
+# STEP 2: Encode categorical
+# -------------------------------
 le = LabelEncoder()
 df['season'] = le.fit_transform(df['season'])
 
-# Features
-X = df[['amazon_price','meesho_price','discount_pct','rating',
-        'num_reviews','page_views','conversion_rate','demand_intensity','season']]
+# -------------------------------
+# STEP 3: Feature Selection
+# -------------------------------
+features = ['amazon_price','meesho_price','discount_pct','rating',
+            'num_reviews','page_views','conversion_rate','demand_intensity','season']
 
-# Target
+X = df[features]
 y = df['price_difference']
 
-# Split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+# -------------------------------
+# STEP 4: Train-Test Split
+# -------------------------------
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
 
-# Train model
-model = RandomForestRegressor(n_estimators=100)
+# -------------------------------
+# STEP 5: Train Model (Improved)
+# -------------------------------
+model = RandomForestRegressor(
+    n_estimators=200,      # more trees = better accuracy
+    max_depth=10,          # prevent overfitting
+    random_state=42
+)
+
 model.fit(X_train, y_train)
 
-# Evaluate
+# -------------------------------
+# STEP 6: Evaluate
+# -------------------------------
 y_pred = model.predict(X_test)
 
-print("MAE:", mean_absolute_error(y_test, y_pred))
-print("R2 Score:", r2_score(y_test, y_pred))
+mae = mean_absolute_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
 
-# Save model
+print("\nModel Performance:")
+print("MAE:", round(mae, 2))
+print("R2 Score:", round(r2, 3))
+
+# -------------------------------
+# STEP 7: Save EVERYTHING needed
+# -------------------------------
 pickle.dump(model, open("model.pkl", "wb"))
 pickle.dump(le, open("encoder.pkl", "wb"))
+pickle.dump(features, open("features.pkl", "wb"))  # VERY IMPORTANT
 
-print("Model & Encoder Saved!")
+print("\nModel, Encoder & Features Saved Successfully!")

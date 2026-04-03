@@ -30,9 +30,6 @@ This project combines **data science, backend logic, and frontend visualization*
 ---
 
 ## 📁 Repository Structure
-
-```
-
 dynamic-ai-pricing-engine/
 │
 ├── dynamic-pricing/                  # Test purpose folder
@@ -48,6 +45,10 @@ dynamic-ai-pricing-engine/
 │
 ├── .gitignore
 └── README.md
+
+```
+
+
 
 ````
 

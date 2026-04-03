@@ -37,7 +37,6 @@ dynamic_pricing/
 ├── requirements.txt        # Python dependencies
 ├── README.md               # This file
 ├── data/
-│   ├── generate_dataset.py # Synthetic data generation (10K+ rows)
 │   ├── preprocessing.py    # Feature engineering & encoding
 │   ├── eda.py              # Exploratory data analysis plots
 │   └── plots/              # Generated EDA visualizations

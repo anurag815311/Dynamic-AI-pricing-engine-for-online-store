@@ -29,22 +29,7 @@ This project combines **data science, backend logic, and frontend visualization*
 
 ---
 
-## 📁 Repository Structure
-dynamic-ai-pricing-engine/
-│
-├── dynamic-pricing/                  # Test purpose folder
-├── dynamic_pricing/                  # Streamlit app (contains its own README)
-│
-├── Dataset_AI_Price_Engine.xlsx
-├── pricing_dataset.csv
-├── final_dynamic_pricing_dataset.csv
-│
-├── EDA.ipynb
-├── preprocessing.ipynb
-├── model_test.ipynb
-│
-├── .gitignore
-└── README.md
+
 
 ```
 
